@@ -35,7 +35,7 @@ const jwtOptions = {
 
 // Create JWT Strategy
 const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
-    const tokenTimeInMinutes = moment().diff(1496759336407, 'minutes')
+    const tokenTimeInMinutes = moment().diff(payload.iat, 'minutes')
     // Check if the token is expired (120 minutes)
     if (tokenTimeInMinutes > 120)
         return done(null, false, 'Expired Token')
